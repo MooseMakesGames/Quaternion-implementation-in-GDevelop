@@ -9,7 +9,7 @@
   "name": "Quaternions",
   "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/Glyphster Pack/Master/SVG/Virtual Reality/344b986fa75d79abe56b0ce583ab81b90de003d34196795a564739e33b737b33_Virtual Reality_360_rotate_vr_movement.svg",
   "shortDescription": "Allows for 3d rotations without gimble lock and ordering errors of euler rotations.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": [
     "Current functions:",
     "",
@@ -22,13 +22,7 @@
     "",
     "I made this because of a stupid role the ball through the maze game, it worked fine, but I just wanted every single edge case and those ridiculous 45 degree angles."
   ],
-  "tags": [
-    "Math",
-    "math",
-    "quaternion",
-    "quaternions",
-    "advanced"
-  ],
+  "tags": [],
   "authorIds": [
     "lHJ85XZ2cKaqM9XGy99RK1UNWgz2"
   ],
@@ -55,7 +49,7 @@
               "parameters": [
                 "Quat.W",
                 "=",
-                "cos(ToRad(Xaxis)/2)*cos(ToRad(Yaxis)/2)*cos(ToRad(Zaxis)/2) - sin(ToRad(Xaxis)/2)*sin(ToRad(Yaxis)/2)*sin(ToRad(Zaxis)/2)\n"
+                "cos(ToRad(Zaxis)/2) * cos(ToRad(Yaxis)/2) * cos(ToRad(Xaxis)/2)\n  + sin(ToRad(Zaxis)/2) * sin(ToRad(Yaxis)/2) * sin(ToRad(Xaxis)/2)\n\n"
               ]
             },
             {
@@ -65,7 +59,7 @@
               "parameters": [
                 "Quat.X",
                 "=",
-                "sin(ToRad(Xaxis)/2)*cos(ToRad(Yaxis)/2)*cos(ToRad(Zaxis)/2) + cos(ToRad(Xaxis)/2)*sin(ToRad(Yaxis)/2)*sin(ToRad(Zaxis)/2)\n"
+                "cos(ToRad(Zaxis)/2) * cos(ToRad(Yaxis)/2) * sin(ToRad(Xaxis)/2)\n  - sin(ToRad(Zaxis)/2) * sin(ToRad(Yaxis)/2) * cos(ToRad(Xaxis)/2)"
               ]
             },
             {
@@ -75,7 +69,7 @@
               "parameters": [
                 "Quat.Y",
                 "=",
-                "cos(ToRad(Xaxis)/2)*sin(ToRad(Yaxis)/2)*cos(ToRad(Zaxis)/2) - sin(ToRad(Xaxis)/2)*cos(ToRad(Yaxis)/2)*sin(ToRad(Zaxis)/2)\n"
+                "cos(ToRad(Zaxis)/2) * sin(ToRad(Yaxis)/2) * cos(ToRad(Xaxis)/2)\n  + sin(ToRad(Zaxis)/2) * cos(ToRad(Yaxis)/2) * sin(ToRad(Xaxis)/2)"
               ]
             },
             {
@@ -85,7 +79,7 @@
               "parameters": [
                 "Quat.Z",
                 "=",
-                "cos(ToRad(Xaxis)/2)*cos(ToRad(Yaxis)/2)*sin(ToRad(Zaxis)/2) + sin(ToRad(Xaxis)/2)*sin(ToRad(Yaxis)/2)*cos(ToRad(Zaxis)/2)\n"
+                "sin(ToRad(Zaxis)/2) * cos(ToRad(Yaxis)/2) * cos(ToRad(Xaxis)/2)\n  - cos(ToRad(Zaxis)/2) * sin(ToRad(Yaxis)/2) * sin(ToRad(Xaxis)/2)"
               ]
             },
             {
@@ -130,8 +124,8 @@
       ],
       "parameters": [
         {
-          "description": "Rotation on X axis",
-          "name": "Xaxis",
+          "description": "Rotation on Z axis",
+          "name": "Zaxis",
           "type": "expression"
         },
         {
@@ -140,8 +134,8 @@
           "type": "expression"
         },
         {
-          "description": "Rotation on Z axis",
-          "name": "Zaxis",
+          "description": "Rotation on X axis",
+          "name": "Xaxis",
           "type": "expression"
         },
         {
@@ -191,7 +185,7 @@
               "parameters": [
                 "Euler.Z",
                 "=",
-                "ToDeg(atan2(2*(WQuat*ZQuat + XQuat*YQuat), 1 - 2*(YQuat*YQuat + ZQuat*ZQuat)))\n"
+                "ToDeg(atan2(2*(WQuat*ZQuat + XQuat*YQuat), 1 - 2*(YQuat*YQuat + ZQuat*ZQuat)))"
               ]
             },
             {
@@ -231,8 +225,8 @@
       ],
       "parameters": [
         {
-          "description": "Quaternion value of X",
-          "name": "XQuat",
+          "description": "Quaternion value of Z",
+          "name": "ZQuat",
           "type": "expression"
         },
         {
@@ -241,8 +235,8 @@
           "type": "expression"
         },
         {
-          "description": "Quaternion value of Z",
-          "name": "ZQuat",
+          "description": "Quaternion value of X",
+          "name": "XQuat",
           "type": "expression"
         },
         {
@@ -305,7 +299,7 @@
                 "value": "SetNumberVariable"
               },
               "parameters": [
-                "Quat.Z",
+                "Quat.W",
                 "=",
                 "WQuat / sqrt(XQuat*XQuat + YQuat*YQuat + ZQuat*ZQuat + WQuat*WQuat)\n"
               ]
@@ -352,8 +346,8 @@
       ],
       "parameters": [
         {
-          "description": "Quaternion value of X",
-          "name": "XQuat",
+          "description": "Quaternion value of Z",
+          "name": "ZQuat",
           "type": "expression"
         },
         {
@@ -362,8 +356,8 @@
           "type": "expression"
         },
         {
-          "description": "Quaternion value of Z",
-          "name": "ZQuat",
+          "description": "Quaternion value of X",
+          "name": "XQuat",
           "type": "expression"
         },
         {
